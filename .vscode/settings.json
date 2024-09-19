@@ -51,5 +51,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "Options-Menu.sln"
+    "dotnet.defaultSolution": "Unity-Options-Menu.sln"
 }
