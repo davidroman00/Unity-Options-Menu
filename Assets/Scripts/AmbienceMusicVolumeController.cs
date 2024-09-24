@@ -4,9 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class AmbienceMusicVolumeController : MonoBehaviour
-{    
-    [SerializeField]
-    Slider _volumeSlider;
+{        
     AudioSource _audioSource;
     void Awake()
     {
@@ -14,6 +12,6 @@ public class AmbienceMusicVolumeController : MonoBehaviour
     }    
     void Update()
     {
-        _audioSource.volume = _volumeSlider.value;
+        _audioSource.volume = AmbienceVolumeStaticVariable.AmbienceMusicVolume;
     }
 }
