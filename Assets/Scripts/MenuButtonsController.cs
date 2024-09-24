@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -6,6 +7,7 @@ using UnityEngine.UI;
 
 public class MenuButtonsController : MonoBehaviour
 {
+    public static KeyCode KeybindingText = KeyCode.E;
     [SerializeField]
     GameObject _optionsScreen;
     [SerializeField]
@@ -15,6 +17,9 @@ public class MenuButtonsController : MonoBehaviour
     [SerializeField]
     GameObject _selectedOption;
     TextMeshProUGUI _selectedText;
+    [SerializeField]
+    TextMeshProUGUI _keybindingText;
+    bool _isKeybindingActive;
     void Awake()
     {
         _selectedText = _selectedOption.GetComponentInChildren<TextMeshProUGUI>();
@@ -40,6 +45,10 @@ public class MenuButtonsController : MonoBehaviour
         _dropdown.SetActive(false);
         Screen.SetResolution(1600, 900, false);
     }
+    public void ActivateKeyBinding()
+    {
+        _isKeybindingActive = true;
+    }
     public void OptionsButton()
     {
         _optionsScreen.SetActive(true);
@@ -48,5 +57,19 @@ public class MenuButtonsController : MonoBehaviour
     public void PlayButton()
     {
         SceneManager.LoadScene("Game");
+    }
+    void OnGUI()
+    {
+        if (_isKeybindingActive)
+        {
+            Event e = Event.current;
+            if (e.isKey)
+            {
+                _keybindingText.text = e.keyCode.ToString();
+                KeybindingText = e.keyCode;
+                _isKeybindingActive = false;
+                Debug.Log(KeybindingText);
+            }
+        }
     }
 }
